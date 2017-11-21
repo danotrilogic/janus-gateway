@@ -381,7 +381,7 @@ int janus_pp_h264_process(FILE *file, janus_pp_frame_packet *list, int *working)
 		}
 		if(frameLen > 0) {
 			/* Save the frame */
-			memset(received_frame + frameLen, 0, FF_INPUT_BUFFER_PADDING_SIZE);
+			memset(received_frame + frameLen, 0, AV_INPUT_BUFFER_PADDING_SIZE);
 
 			AVPacket packet;
 			av_init_packet(&packet);
