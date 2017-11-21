@@ -109,7 +109,7 @@ int janus_pp_webm_create(char *destination, int vp8) {
 	vStream->codec->height = max_height;
 	vStream->codec->pix_fmt = PIX_FMT_YUV420P;
 	if (fctx->flags & AVFMT_GLOBALHEADER)
-		vStream->codec->flags |= CODEC_FLAG_GLOBAL_HEADER;
+		vStream->codec->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
 	//~ fctx->timestamp = 0;
 	//~ if(url_fopen(&fctx->pb, fctx->filename, URL_WRONLY) < 0) {
 	if(avio_open(&fctx->pb, fctx->filename, AVIO_FLAG_WRITE) < 0) {
@@ -545,7 +545,7 @@ int janus_pp_webm_process(FILE *file, janus_pp_frame_packet *list, int vp8, int 
 			tmp = tmp->next;
 		}
 		if(frameLen > 0) {
-			memset(received_frame + frameLen, 0, FF_INPUT_BUFFER_PADDING_SIZE);
+			memset(received_frame + frameLen, 0, AV_INPUT_BUFFER_PADDING_SIZE);
 
 			AVPacket packet;
 			av_init_packet(&packet);
